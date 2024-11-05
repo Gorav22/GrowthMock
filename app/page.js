@@ -15,13 +15,12 @@ const page = () => {
 
     <div>
       <Head>
-        <title>AI Mock Interview</title>
+        <title>GrowthMock</title>
         <meta name="description" content="Ace your next interview with AI-powered mock interviews" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <main className="min-h-screen">
-        {/* Header Section */}
         <header className="w-full py-8 bg-gray-100 shadow-md">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
             <h1 className="text-3xl font-bold text-primary">AI Mock Interview</h1>
