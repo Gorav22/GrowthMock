@@ -5,11 +5,13 @@ import {
 } from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/ThemeProvider.tsx"
+import { Icon } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Growth Mock",
-  description: "Created by Gorav Jindal",
+  title: "GrowthMock",
+  description: "Created BY Gorav Jindal",
+  Icon: "https://raw.githubusercontent.com/Gorav22/images/refs/heads/main/logo.png?token=GHSAT0AAAAAACUDVF34DAWRLW25F3FWWHHSZZJ3RWQ"
 };
 
 export default function RootLayout({ children }) {

@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Contect from './_components/Contect';
 import Link from 'next/link';
 import { FaGithub } from "react-icons/fa";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const page = () => {
   return (
@@ -17,13 +16,14 @@ const page = () => {
       <Head>
         <title>GrowthMock</title>
         <meta name="description" content="Ace your next interview with AI-powered mock interviews" />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="min-h-screen">
+        {/* Header Section */}
         <header className="w-full py-8 bg-gray-100 shadow-md">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
-            <h1 className="text-3xl font-bold text-primary">AI Mock Interview</h1>
+            <h1 className="text-3xl font-bold text-primary">GrowthMock</h1>
             <nav className="flex flex-col sm:flex-row flex-wrap items-center justify-between mt-4 md:mt-0 space-y-4 sm:space-y-0 sm:space-x-4">
               <div>
                 <a
@@ -50,13 +50,13 @@ const page = () => {
           <div className="mt-6 flex flex-col md:flex-row">
             <a
               href="/dashboard"
-              className="px-6 py-3 mb-4 md:mb-0 md:mr-4 text-lg font-semibold bg-white !text-primary-600 rounded-lg shadow-lg hover:bg-gray-300"
+              className="px-6 py-3 mb-4 md:mb-0 md:mr-4 text-lg font-semibold bg-white !text-primary-600 rounded-lg shadow-lg hover:bg-gray-100"
             >
               Get Started
             </a>
             <a
               href="#features"
-              className="px-6 py-3 mb-4 md:mb-0 md:mr-4 text-lg font-semibold bg-white !text-primary-600 rounded-lg shadow-lg hover:bg-gray-300"
+              className="px-6 py-3 text-lg font-semibold border border-white rounded-lg hover:bg-white hover:text-black-600"
             >
               Learn More
             </a>
@@ -99,7 +99,7 @@ const page = () => {
             <h2 className="text-4xl font-bold text-gray-800">What Our Users Say</h2>
             <div className="flex flex-wrap justify-center mt-8">
               <div className="w-full md:w-1/2 px-4 py-8">
-                <div className="bg-white rounded-lg p-6 shadow-2xl">
+                <div className="bg-white rounded-lg p-6 shadow-md">
                   <p className="text-gray-600">
                     "The AI mock interviews were incredibly helpful. I felt much more confident going into my real interview."
                   </p>
@@ -107,7 +107,7 @@ const page = () => {
                 </div>
               </div>
               <div className="w-full md:w-1/2 px-4 py-8">
-                <div className="bg-white rounded-lg p-6 shadow-2xl">
+                <div className="bg-white rounded-lg p-6 shadow-md">
                   <p className="text-gray-600">
                     "The feedback was spot on and helped me improve my answers. Highly recommend this service!"
                   </p>
@@ -124,39 +124,9 @@ const page = () => {
         </section>
       </main>
 
-      
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full sm:w-1/3 mb-6">
-            <h2 className="text-xl font-bold mb-4">Company</h2>
-            <p className="mb-4">1234 Street Name, City, State, 56789</p>
-            <p>info@company.com</p>
-          </div>
-          <div className="w-full sm:w-1/3 mb-6">
-            <h2 className="text-xl font-bold mb-4">Quick Links</h2>
-            <ul>
-              <li className="mb-2"><a href="#" className="text-gray-400 hover:text-white">About Us</a></li>
-              <li className="mb-2"><a href="#features" className="text-gray-400 hover:text-white">Features</a></li>
-              <li className="mb-2"><a href="#testimonials" className="text-gray-400 hover:text-white">Testimonials</a></li>
-              <li className="mb-2"><a href="#contact" className="text-gray-400 hover:text-white">Contact</a></li>
-            </ul>
-          </div>
-          <div className="w-full sm:w-1/3">
-            <h2 className="text-xl font-bold mb-4">Follow Us</h2>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white"><FaFacebook size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-white"><FaTwitter size={24} /></a>
-              <a href="https://github.com/Gorav22" target='_blank' className="text-gray-400 hover:text-white"><FaGithub size={24} /></a>
-              <a href="https://www.linkedin.com/in/gorav-jindal/" target='_blank' className="text-gray-400 hover:text-white"><FaLinkedin size={24} /></a>
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 border-t border-gray-700 pt-4 text-center">
-          <p>&copy; 2024 Company. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+      <footer className="py-8 bg-black text-white text-center">
+        <p>© 2024 AI Mock Interview. All rights reserved.</p>
+      </footer>
     </div>
   )
 }
