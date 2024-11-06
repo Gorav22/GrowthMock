@@ -65,7 +65,11 @@ const Header = ({ logo }) => {
               Upgrade
             </li>
           </Link>
-
+          <Link href="/dashboard/Mockbot">
+           <li
+              className={`hover:text-black hover:font-bold transition-all cursor-pointer ${
+                path == "/dashboard/Mockbot" && "text-black font-bold"}`}> Mockbot </li>
+          </Link>
           <Link href="/dashboard/howit">
             <li
               className={`hover:text-black hover:font-bold transition-all cursor-pointer ${
@@ -125,6 +129,11 @@ const Header = ({ logo }) => {
             >
               Upgrade
             </li>
+          </Link>
+          <Link href="/dashboard/Mockbot">
+           <li
+              className={`hover:text-black hover:font-bold transition-all cursor-pointer ${
+                path == "/dashboard/Mockbot" && "text-black font-bold"}`}> Mockbot </li>
           </Link>
           <Link href="/dashboard/howit">
             <li
