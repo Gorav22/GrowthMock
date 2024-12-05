@@ -14,6 +14,7 @@ const HowItWorks = () => {
         <meta
           name="description"
           content="Learn how our AI Mock Interview works."
+          keywords=" Growthmock, AI Mock Interview, Mock Interview Website , AI Interview Helper Website, Interview Helper Website, AI Mock Interviewer"
         />
       </Head>
       <main className="bg-gray-100 p-8 mt-10">
