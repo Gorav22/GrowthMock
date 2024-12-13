@@ -20,7 +20,7 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { Question } from "@/utils/schema";
 import { useRouter } from "next/navigation";
-
+import axios from 'axios';
 const AddQuestions = () => {
   const [openDailog, setOpenDialog] = useState(false);
   const [jobPosition, setJobPosition] = useState("");
@@ -35,7 +35,24 @@ const AddQuestions = () => {
   const handleInputChange = (setState) => (e) => {
     setState(e.target.value);
   };
-
+  const options = {
+  method: 'POST',
+  url: 'https://chatgpt-42.p.rapidapi.com/chatgpt',
+  headers: {
+    'x-rapidapi-key': '20e70a3fd9mshd4797d51be8059ap18260cjsn9a770478e480',
+    'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
+    'Content-Type': 'application/json'
+  },
+  data: {
+    messages: [
+      {
+        role: 'user',
+        content: 'hello'
+      }
+    ],
+    web_access: false
+  }
+};
   const onSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -54,17 +71,32 @@ const AddQuestions = () => {
     Years of Experience: ${jobExperience},
     Which type of question: ${typeQuestion},
     This company previous question: ${company},
-    Based on this information, please provide 10 interview questions with answers in JSON format.
-    Each question and answer should be fields in the JSON. Ensure "Question" and "Answer" are fields.
+    Based on this information, please provide 5 interview questions with answers in JSON format.
+    Each question and answer should be fields in the JSON. Ensure "Question" and "Answer" are fields. remember not type anything else except it.
 }  
   `;
     console.log("InputPrompt:", InputPrompt);
-
+    const options = {
+      method: 'POST',
+      url: 'https://chatgpt-42.p.rapidapi.com/chatgpt',
+      headers: {
+        'x-rapidapi-key': process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+        'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
+        'Content-Type': 'application/json'
+      },
+      data: {
+        messages: [
+          {
+            role: 'user',
+            content: InputPrompt
+          }
+        ],
+        web_access: false
+      }
+    };
     try {
-      const result = await chatSession.sendMessage(InputPrompt);
-      const MockQuestionJsonResp = result.response
-        .text()
-        .replace("```json", "")
+      const result = await axios.request(options);
+      const MockQuestionJsonResp = result.data.result
         .replace("```", "")
         .trim();
       // console.log("Parsed data", JSON.parse(MockQuestionJsonResp));
