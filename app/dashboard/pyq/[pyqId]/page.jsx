@@ -10,67 +10,41 @@ import { db } from "@/utils/db";
 import { Question } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 
-const Page = ({ params }) => {
-  const [questionData, setQuestionData] = useState([]);
+const page = ({ params }) => {
+  const [questionData, setQuestionData] = useState();
 
   useEffect(() => {
-    console.log("params.pyqId:", params?.pyqId);
-    if (params?.pyqId) {
-      console.log("Fetching data for pyqId:", params.pyqId);
-      getQuestionDetails();
-    }
-  }, [params?.pyqId]);
+    console.log(params.pyqId);
+    getQuestionDetails();
+  }, []);
 
   const getQuestionDetails = async () => {
-    try {
-      const result = await db
-        .select()
-        .from(Question)
-        .where(eq(Question.mockId, params.pyqId));
-
-      console.log("Database result:", result);
-
-      if (result.length > 0) {
-        const MockQuestionJsonResp = result[0].MockQuestionJsonResp;
-        console.log("Raw JSON Response:", MockQuestionJsonResp);
-
-        try {
-          const parsedData = JSON.parse(MockQuestionJsonResp);
-          console.log("Parsed Data:", parsedData);
-
-          // Ensure that you access the correct key: "Interview Questions"
-          const interviewQuestions = parsedData["Interview Questions"];
-
-          if (interviewQuestions) {
-            setQuestionData(interviewQuestions);
-          } else {
-            console.error("No 'Interview Questions' found in the response");
-          }
-        } catch (error) {
-          console.error("Error parsing JSON:", error);
-        }
-      } else {
-        console.error("No data found for the given pyqId");
-      }
-    } catch (error) {
-      console.error("Error fetching question details:", error);
-    }
+    const result = await db
+      .select()
+      .from(Question)
+      .where(eq(Question.mockId, params.pyqId));
+      const questionData = JSON.parse(result[0].MockQuestionJsonResp);
+    setQuestionData(questionData);
+    // console.log("data", questionData);
   };
 
+
+
   return (
-    questionData.length > 0 && (
-      <div className="p-10 my-5">
-        <Accordion type="single" collapsible>
-          {questionData.map((item, index) => (
-            <AccordionItem value={`item-${index + 1}`} key={item.Question} className="mb-5">
+    questionData && (
+    <div className="p-10 my-5">
+      <Accordion type="single" collapsible>
+        {questionData &&
+          questionData.map((item, index) => (
+            <AccordionItem value={`item-${index + 1}`} key={index} className="mb-5"  >
               <AccordionTrigger>{item?.Question}?</AccordionTrigger>
               <AccordionContent>{item?.Answer}</AccordionContent>
             </AccordionItem>
           ))}
-        </Accordion>
-      </div>
+      </Accordion>
+    </div>
     )
   );
 };
 
-export default Page;
+export default page;

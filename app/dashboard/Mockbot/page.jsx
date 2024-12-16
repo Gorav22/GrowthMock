@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
-// import { chatSession } from "@/utils/GeminiAIModal";
+import { chatSession } from "@/utils/GeminiAIModal";
 import { FaLink } from "react-icons/fa6";
 import { ClipboardCopyIcon } from '@heroicons/react/outline';
-import axios from 'axios';
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -42,28 +41,10 @@ const Chatbot = () => {
     if (userInput.trim()) {
       setMessages([...messages, { sender: "user", text: userInput }]);
       setUserInput("");
-      const options = {
-        method: 'POST',
-        url: 'https://chatgpt-42.p.rapidapi.com/chatgpt',
-        headers: {
-          'x-rapidapi-key': '20e70a3fd9mshd4797d51be8059ap18260cjsn9a770478e480',
-          'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-          'Content-Type': 'application/json'
-        },
-        data: {
-          messages: [
-            {
-              role: 'user',
-              content: Userprompt+userInput
-            }
-          ],
-          web_access: false
-        }
-      };
       try {
-        const response = await axios.request(options);
-        if (response.data.result) {
-          const botResponse = response.data.result;
+        const response = await chatSession.sendMessage(Userprompt + userInput);
+        if (response.response.text() && response.response.text().length > 0) {
+          const botResponse = response.response.text();
           setMessages((prevMessages) => [
             ...prevMessages,
             { sender: "bot", text: botResponse, copyable: true },

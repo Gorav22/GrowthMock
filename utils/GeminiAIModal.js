@@ -1,26 +1,32 @@
-import axios from 'axios';
-export const chatSession = {
-  // const axios = require('axios');
-  method: 'POST',
-  url: 'https://chatgpt-42.p.rapidapi.com/gpt4',
-  headers: {
-    'x-rapidapi-key': process.env.NEXT_PUBLIC_GEMINI_API_KEY,
-    'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-    'Content-Type': 'application/json'
-  },
-  data: {
-    messages: [
-      {
-        role: 'user',
-        content: 'hi'
-      }
-    ],
-    web_access: false
-  }
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey);
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-pro",
+});
+const generationConfig = {
+  temperature: 1,
+  topP: 0.95,
+  topK: 64,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
 };
-// try {
-// 	const response = await axios.request(options);
-// 	console.log(response.data);
-// } catch (error) {
-// 	console.error(error);
+const safetySettings = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+  },
+];
 
+export const chatSession = model.startChat({
+  generationConfig,
+  safetySettings
+});
