@@ -25,14 +25,14 @@ const page = () => {
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
             <h1 className="text-3xl font-bold text-primary">GrowthMock</h1>
             <nav className="flex flex-col sm:flex-row flex-wrap items-center justify-between mt-4 md:mt-0 space-y-4 sm:space-y-0 sm:space-x-4">
-              <div>
+              {/* <div>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://github.com/Gorav22">
                   <FaGithub className="w-10 h-8" />
                 </a>
-              </div>
+              </div> */}
 
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0">
                 <a href="#features" className="text-lg text-gray-800 mx-2 md:mx-4">Features</a>
